@@ -1,0 +1,74 @@
+﻿
+<link rel="stylesheet" href="~/css/Css2.0.css" asp-append-version="true" />
+<div class="imgHome text-center">
+    <img class="img1" src="~/images/logoBrawl.png" style="width:400px; margin-top:20px" />
+    <h1 class="tituloinicio display-4">BS LEAGUE</h1>
+    @if (ViewData["ERROR"] != null)
+    {
+        <p>@ViewData["ERROR"]</p>
+    }
+    <div class="botonera">
+        <a class="btnReg btn mx-2" data-bs-toggle="modal" data-bs-target="#modalLogin">
+            Iniciar Sesion
+        </a>
+        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="estilomodal modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+                        <button type="button" class="btn-close btnCancelar" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <hr style="width:50%;margin:auto;color:black; border-top:2px solid" />
+                    <!--AQUI ABRE FORM METHOD POST-->
+                    <form method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="accion" value="iniciosesion" />
+                            <label>Email: </label>
+                            <input type="email" class="form-control" name="email" value="jc@gmail.com" required />
+                            <label>Contraseña: </label>
+                            <input type="password" class="form-control" name="contrasenia" value="jc" required />
+                        </div>
+                        <hr style="width:50%;margin:auto;color:black; border-top:2px solid" />
+                        <div class="d-flex p-3">
+                            <button type="submit" class="btnReg btnVerdes w-50 mx-1">Iniciar sesion</button>
+                            <button type="button" id="btnCancelar" class="btnReg btnCancelar w-50 mx-1" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a class="btnReg btn mx-2" data-bs-toggle="modal" data-bs-target="#modalRegister">
+            Registrarse
+        </a>
+        <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="estilomodal modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!--AQUI ABRE FORM METHOD POST-->
+                    <form method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="accion" value="registro" />
+                            <label>Nombre: </label>
+                            <input type="text" class="form-control" name="nombre" required />
+                            <label>Tag Usuario: </label>
+                            <input type="text" class="form-control" name="usuariotag" required />
+                            <label>Email: </label>
+                            <input type="email" class="form-control" name="email" required />
+                            <label>Contraseña: </label>
+                            <input type="password" class="form-control" name="contrasenia" required />
+                            
+
+                        </div>
+                        <div class="d-flex p-3">
+                            <button type="submit" class="btn btnVerdes w-50 mx-1">Registrarse</button>
+                            <button type="button" class="btn btnCancelar w-50 mx-1" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

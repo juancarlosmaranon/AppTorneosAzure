@@ -1,0 +1,113 @@
+﻿@model List<EquipoLiga>
+
+@{
+    Liga liga = ViewData["LIGA"] as Liga;
+    List<EquipoLiga> equipoliga;
+    List<Equipo> equipos;
+    User usuario = Context.Session.GetObject<User>("USUARIO");
+
+    if (Model == null)
+    {
+        equipoliga = new List<EquipoLiga>();
+    }
+    else
+    {
+        equipoliga = Model;
+    }
+
+    if (ViewData["EQUIPOS"] == null)
+    {
+        equipos = new List<Equipo>();
+    }
+    else
+    {
+        equipos = ViewData["EQUIPOS"] as List<Equipo>;
+    }
+
+    int numeroeq = equipoliga.Where(x => x.Inscrito == true).Count();
+
+}
+
+
+<form method="post" id="formInicioLiga">
+    <input type="hidden" name="accion" value="iniciarLiga" />
+    <input type="hidden" name="idliga" value="@liga.IdLiga" />
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h4 class="modal-title">@liga.Nombre</h4>
+        <button type="button" class="btn-close btnCancelar" data-bs-dismiss="modal"></button>
+    </div>
+    <hr style="width:50%;margin:auto;color:black; border-top:2px solid" />
+    <!-- Modal body -->
+    <div class="modal-body">
+        <div class="elmodal">
+            <h5>Equipos solicitantres</h5>
+            <table class="table">
+                <tr class="thead">
+                    <th>Nombre</th>
+                    <th>Aceptar / Rechazar</th>
+                </tr>
+                <tbody class="tbody">
+                    @for (int i = 0; i < equipos.Count; i++)
+                    {
+                        @if (equipoliga[i].Inscrito == false)
+                        {
+                            <tr class="thead trMenuLigas">
+                                <td class="tdLigas">@equipos[i].Nombre</td>
+                                <td class="tdLigas">
+                                    <a asp-controller="Liga" asp-action="SolicitudAcceso" asp-route-confirmado="true" asp-route-idinscrito="@equipoliga[i].Id" class="btn btnReg btnVerdes">Aceptar</a>
+                                    <a asp-controller="Liga" asp-action="SolicitudAcceso" asp-route-confirmado="false" asp-route-idinscrito="@equipoliga[i].Id" class="btn btnReg btnCancelar">Denegar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top:10px; width:100%;">
+            <h5>Equipos aceptados</h5>
+            <table class="table tableAceptados">
+                <tr class="thead">
+                    <th>Nombre Equipo</th>
+                    <th>Eliminar Equipo</th>
+                </tr>
+                <tbody class="tbody">
+                    @for (int i = 0; i < equipos.Count; i++)
+                    {
+                        @if (equipoliga[i].Inscrito == true)
+                        {
+                            <tr class="thead trMenuLigas">
+                                <td>@equipos[i].Nombre</td>
+                                @if (!(equipos[i].Jugador1 == usuario.IdUsuario || equipos[i].Jugador2 == usuario.IdUsuario || equipos[i].Jugador3 == usuario.IdUsuario))
+                                {
+                                    <td><a asp-controller="Liga" asp-action="SolicitudAcceso" asp-route-confirmado="false" asp-route-idinscrito="@equipoliga[i].Id" class="btn btnReg btnCancelar">Eliminar</a></td>
+                                }
+                                else
+                                {
+                                    <td>CREADOR DE LIGA</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top:20px">
+            <div>
+                <label>Fecha Inicio</label><br />
+                <input class="inputForm" type="date" name="fechainicio"/>
+            </div>
+            <div>
+                <label>Numero de equipos</label><br />
+                <input class="inputForm" type="hidden" name="numequipos" value="@numeroeq"/>
+                <input class="inputForm" type="number" disabled value="@numeroeq"/>
+            </div>
+        </div>
+    </div>
+    <hr style="width:50%;margin:auto;color:black; border-top:2px solid" />
+    <!-- Modal footer -->
+    <div class="modal-footer footmodal">
+        <button type="button" onclick="compruebaEquipos(@numeroeq)" class="btn btnReg btnVerdes elemetStyle" style="width:120px; height:40px; margin-top:20px">Crear</button>
+        <button type="button" class="btn btnReg btnCancelar" data-bs-dismiss="modal">Cancelar</button>
+    </div>
+</form>

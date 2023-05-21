@@ -1,0 +1,13 @@
+﻿@model Perfil
+<div style="position: relative;">
+    <div class="card" style="width: 18rem; background-color:#242424;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-top:350px">
+        <img src="~/images/perf.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Nombre</h4>
+            <h5 class="card-title">Tag: @Model.Tag</h5>
+            <p class="card-text">Total Trofeos: @Model.Trofeos</p>
+            <p class="card-text">Maximo Trofeos: @Model.MaximoTr</p>
+            <p class="card-text">Victorias Totales: @Model.VictoriasTotales</p>
+        </div>
+    </div>
+</div>

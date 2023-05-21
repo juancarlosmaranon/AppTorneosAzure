@@ -1,0 +1,133 @@
+﻿@model List<Liga>
+
+@{
+    List<Equipo> equiposuser;
+
+    if (ViewData["EQUIPOSUSER"] == null)
+    {
+        equiposuser = new List<Equipo>();
+    }
+    else
+    {
+        equiposuser = ViewData["EQUIPOSUSER"] as List<Equipo>;
+    }
+
+}
+<div class="wrapper">
+    <h1 class="tituloinicio">Ligas</h1>
+    <hr style="width:50%;margin:auto;color:black; border-top:2px solid" />
+    <div id="divequipos" class="botonera">
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <div id="invitacionesligas">
+            <div>
+                <h2>Buscador de ligas</h2>
+            </div>
+            <div class="divtabla">
+                <div class="buscador">
+                    <form method="post">
+                        <input type="hidden" name="accion" value="BuscarLiga" />
+                        <input type="text" name="nombre" class="inputLiga" />
+                        <button type="submit" class="btn btnReg btnLiga">Buscar Liga</button>
+                    </form>
+                </div>
+                <h2>Ligas</h2>
+                <div class="tablascroll2">
+                    <table class="table">
+                        <tr class="thead">
+                            <th>Nombre</th>
+                            <th>Activo</th>
+                            <th>deta</th>
+                        </tr>
+                        <tbody id="tbodyligas" class="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content modalBody" id="modalAdmin">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="misligas">
+            <div>
+                <h2>Equipo para crear Liga</h2>
+            </div>
+            <div class="divfiltros">
+                @if (equiposuser.Count > 0)
+                {
+                    <select id="equiposelec" onchange="cambiarInputIDEq()">
+                        @foreach (Equipo item in equiposuser)
+                        {
+                            @if (item.ConfirmJug2 == 1 && item.ConfirmJug3 == 1)
+                            {
+                                <option value="@item.IdEquipo">@item.Nombre</option>
+                            }
+                        }
+                    </select>
+                }
+                else
+                {
+                    <p>No hay equipos disponibles</p>
+                }
+
+            </div>
+
+            <button type="button" id="toggleEditor" class="btn btnReg btnVerdes mx-1" style="margin-top:30px">Crear Liga</button>
+
+            <div style="padding:20px ;background-color:#242424; display:none" id="crearLiga">
+
+                <form method="post">
+                    <label class="labelEquipo">Nombre de Liga</label>
+                    <input type="hidden" name="accion" value="CrearLiga" />
+                    <input type="text" name="nombre" class="inputEquipo form-control" />
+                    <input id="crearligateam" type="hidden" value="0" name="idequipo" />
+                    <button type="submit" class="btnReg btnVerdes">Crear</button>
+                </form>
+
+            </div>
+
+            <input id="teamhidden" type="hidden" value="0" name="idequipo" />
+
+            <script>
+                $(document).ready(function() {
+                    $('#toggleEditor').click(function() {
+                        $('#crearLiga').toggle('fast')
+                    })
+                    cambiarInputIDEq();
+                    cargaTBody();
+                })
+
+                function cargaModalAdmin(idliga) {
+                    $("#modalAdmin").load("/Liga/_MenuAdminLiga?idliga=" + idliga);
+                }
+
+                function cargaTBody() {
+                    $("#tbodyligas").load("/Liga/_TBodyLigas?idequipo=" + $("#teamhidden").val());
+                }
+
+                function cambiarInputIDEq() {
+                    $("#crearligateam").val($("#equiposelec").val())
+                    $("#teamhidden").val($("#equiposelec").val())
+                }
+
+                function enviarSolicitud(idliga) {
+                    window.location.href = "/Liga/EnvioSolicitud?idliga=" + idliga + "&idequipo=" + $("#teamhidden").val()
+                    console.log(idliga)
+                }
+
+                function compruebaEquipos(numeroeq){
+                    if (numeroeq >= 2 && numeroeq <= 10){
+                        $("#formInicioLiga").submit();
+                    }else{
+                        alert("Debe haber un minimo de 2 equipos y un maximo de 10 equipos para empezar la liga")
+                    }
+                }
+            </script>
+
+        </div>
+
+    </div>
+

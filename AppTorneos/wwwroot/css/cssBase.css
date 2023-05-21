@@ -1,0 +1,602 @@
+﻿@font-face {
+    font-family: Genos;
+    src: url(/css/Genos/Genos-VariableFont_wght.ttf);
+}
+
+/*GENERAL*/
+
+* {
+    font-family: Genos !important;
+    color: #E8E8E8;
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-weight: 500;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.btnReg {
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+    width: 12%;
+    color: black;
+    background-color: #FFBD21;
+    font-weight: 500;
+    width: 8em;
+    margin: 1em;
+    font-weight:600 !important;
+}
+
+.btnCancelar {
+    background-color: #F01919 !important;
+    color: black;
+}
+
+.btnVerdes {
+    background-color: #27A677 !important;
+    color: black;
+}
+
+/*MENU*/
+.navbar {
+    background-color: #FF6A25;
+    height: 100px;
+}
+
+/*TITULOINICIO*/
+
+.tituloinicio{
+    color: #E8E8E8;
+    margin-top: 3%;
+}
+
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    margin-top: -1%;
+}
+
+/*MENU INICIO*/
+
+.cols {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.col {
+    width: calc(25% - 2rem);
+    max-width:23rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.container {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.front,
+.back {
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
+    border-radius: 10px;
+    background-position: center;
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-align: center;
+    min-height: 280px;
+    height: auto;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.back {
+    background-color: #E36F25;
+    background: -webkit-linear-gradient(45deg, #E36F25 0%,#596a72 100%);
+    background: -o-linear-gradient(45deg, #E36F25 0%,#596a72 100%);
+    background: linear-gradient(45deg, #E36F25 0%,#596a72 100%);
+}
+
+.front:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    opacity: .6;
+    background-color: #000;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.container:hover .front,
+.container:hover .back {
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.inner {
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+    transform: translateY(-50%) translateZ(60px) scale(0.94);
+    top: 50%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+}
+
+.container .back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.container .front {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.container:hover .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.container:hover .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.front .inner p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+    .front .inner p:after {
+        content: '';
+        width: 4rem;
+        height: 2px;
+        position: absolute;
+        background: #C6D4DF;
+        display: block;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: -.75rem;
+    }
+
+.front .inner span {
+    color: rgba(255,255,255,0.7);
+    font-family: 'Montserrat';
+    font-weight: 300;
+}
+
+.logoInicio {
+    margin-right: 0px;
+    height: 100px;
+    position: absolute;
+}
+
+.menu {
+    margin-top: 0px;
+    margin: auto;
+    color: black;
+    font-size: 150%;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btnInicio {
+    margin-left: 0px
+}
+
+.imgHome {
+    width: 100%;
+    margin-top: 100px;
+}
+
+.img1 {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*TABLAS*/
+
+.table {
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    font-weight: 400;
+    font-size: 15px;
+    color: #E8E8E8;
+    overflow-x: auto;
+    border-radius: 30px;
+}
+
+.tablascroll {
+    overflow-y: scroll;
+}
+
+.tablascroll2 {
+    height: 250px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#555;
+}
+
+::-webkit-scrollbar-track{
+    visibility:hidden;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius:5px;
+}
+
+.thead {
+    font-weight: bold;
+    font-size: 18px;
+    position: sticky;
+    top: 0px;
+    background-color: #242424;
+}
+
+    .thead > th {
+        border: 0px !important;
+        padding: 0px;
+        height: fit-content;
+        min-width: 130px;
+        color: #E8E8E8;
+        border: 0px !important;
+    }
+
+    .thead > :first-child {
+        border-radius: 15px 0 0 15px;
+    }
+
+    .thead > :last-child {
+        border-radius: 0 15px 15px 0;
+    }
+
+.tbody > tr {
+    height: 30px;
+    border:0px
+}
+
+    .tbody > tr > td {
+        border: 0px;
+        max-width: 250px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .tbody > tr:nth-child(odd) {
+        border: 0px;
+        background-color: rgba(58, 58, 58, 0.4);
+        border-radius: 15px;
+    }
+
+    .tbody > tr:nth-child(even) {
+        border: 0px;
+        background-color: #4F4E4E;
+        border-radius: 15px;
+    }
+
+    .tbody > tr > td:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+
+    .tbody > tr > td:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+
+.botonera button {
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+    /*width: 12%;*/
+}
+
+.trMenuLigas > td{
+    text-align: center;
+    vertical-align:middle;
+    flex-direction:row;
+    justify-content:center;
+}
+
+.estilomodal {
+    background-color: #494848;
+    color: #E8E8E8;
+}
+
+.botonera {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modalBody {
+    background-color: #434242;
+    border-radius: 20px;
+}
+
+.modal-header{
+    border-bottom:0px !important;
+}
+
+.modal-footer{
+    border-top:0px !important;
+}
+
+.footmodal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat';
+    font-weight: normal;
+    color: #444;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+
+/*EQUIPOS*/
+
+.inputEquipo {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    color:black;
+}
+
+.labelEquipo {
+    color: white;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#crearEquipo {
+    border-radius: 15px;
+    width:100%;
+}
+
+#detallesEquipo {
+    display: none;
+    margin-top: 40px;
+    width:700px;
+}
+
+.tdEquipos{
+    vertical-align:baseline;
+}
+
+#divequipos {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#invitacionesequipos {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 700px;
+    margin-right: 5%;
+}
+
+#misequipos {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 700px;
+    margin-left: 5%;
+}
+
+/*LIGAS*/
+
+#equiposelec {
+    width: 200px;
+    background-color: #4F4E4E;
+    color: white;
+    border-radius: 50px;
+    border-color: #4F4E4E;
+    text-align:center;
+    margin-top:10px;
+}
+
+.btnLiga {
+    background-color: #FFBD21 !important;
+}
+
+.inputLiga {
+    width: 60%;
+    text-align: center;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    color: black;
+    border-width: 0px;
+    border-color: #434242;
+}
+
+.menuligas {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 1300px;
+    margin-left: 5%;
+}
+
+#misligas {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 200px;
+    margin-left: 5%;
+    background-color: #242424;
+    border-radius: 50px;
+}
+
+#invitacionesligas {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 900px;
+    margin-right: 5%;
+}
+
+.buscador {
+    text-align: center;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.tablaLigas {
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+    .tablaLigas thead tr th:first-child, .tablaLigas tbody tr td:first-child {
+        width: 70%;
+    }
+
+.buscador button {
+    margin: 10px;
+    display: block;
+    width: 20%;
+    margin-right: 30%;
+    background-color: orange;
+    margin-left: 40%;
+}
+
+.filtroligas {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 700px;
+    margin-left: 5%;
+}
+
+.losradios {
+    width: 30%;
+    display: inline-block;
+    margin: 1%;
+}
+
+.radio {
+    border: 0px;
+    width: 100%;
+    height: 1.5em;
+    margin-top: 8px;
+}
+
+#crearLiga {
+    margin-top: 50px;
+    border-radius:50px;
+}
+
+.tableAceptados {
+    width: 600px;
+}
+
+.elmodal{
+    display:block;
+}
+
+.inputForm {
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 15px;
+    color: black;
+}

@@ -1,0 +1,115 @@
+﻿@model List<Liga>
+
+@{
+    List<EquipoLiga> ligasapuntado;
+
+    if (ViewData["LIGASAPUNTADO"] != null)
+    {
+        ligasapuntado = ViewData["LIGASAPUNTADO"] as List<EquipoLiga>;
+    }
+    else
+    {
+        ligasapuntado = new List<EquipoLiga>();
+    }
+
+    List<int> idligasapuntado = new List<int>();
+    foreach (EquipoLiga ligaap in ligasapuntado)
+    {
+        idligasapuntado.Add(ligaap.IdLiga);
+    }
+
+    Equipo equipo;
+
+    if (ViewData["EQUIPO"] != null)
+    {
+        equipo = ViewData["EQUIPO"] as Equipo;
+    }
+    else
+    {
+        equipo = new Equipo();
+    }
+}
+
+
+
+@foreach (Liga lig in Model)
+{
+    <tr class="thead trMenuLigas">
+        <td>@lig.Nombre</td>
+        @if (lig.Estado == -1)
+        {
+            <td>
+                Sin empezar
+            </td>
+        }
+        else if (lig.Estado == 0)
+        {
+            <td>
+                Empezada
+            </td>
+        }
+        else if (lig.Estado == 1)
+        {
+            <td>
+                Finalizada
+            </td>
+        }
+        @if (equipo.Jugador1 == lig.Creador || equipo.Jugador2 == lig.Creador || equipo.Jugador3 == lig.Creador)
+        {
+            @if (lig.Estado == -1)
+            {
+                <td>
+                    <button type="button" onclick="cargaModalAdmin(@lig.IdLiga)" class="btn btnReg btnLiga" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Ver Detalles
+                    </button>
+                </td>
+            }
+            else
+            {
+                 <td>
+                    <button type="button" class="btn btnReg btnLiga">
+                        Ver Liga
+                    </button>
+                </td> 
+            }
+
+        }
+        else
+        {
+            @if (lig.Estado != -1)
+            {
+                <td>
+                    <button type="button" class="btn btnReg btnLiga">
+                        Ver Liga
+                    </button>
+                </td>
+            }
+            else
+            {
+                if (idligasapuntado.Contains(lig.IdLiga))
+                {
+                    <td>
+                        @if (ligasapuntado.Where(x => x.IdLiga == lig.IdLiga).FirstOrDefault().Inscrito == false)
+                        {
+                            <button type="button" class="btn btnReg btnLiga">
+                                Solicitado
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btnReg btnVerdes">
+                                Aceptado
+                            </button>
+                        }
+                    </td>
+                }else{
+                    <td>
+                        <button type="button" class="btn btnReg btnLiga" onclick="enviarSolicitud(@lig.IdLiga)">
+                            Enviar solicitud
+                        </button>
+                    </td>
+                }
+            }
+        }
+    </tr>
+}

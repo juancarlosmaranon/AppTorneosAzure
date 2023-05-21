@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]BS LEAGUE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/cssBase.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Css2.0.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AppTorneos.styles.css" asp-append-version="true" />
+</head>
+<body style="background-color:#494848; height:10px !important;">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <div class="logoInicio">
+                <a class="navbar-brand" style="margin-left:20px" asp-controller="Inicio" asp-action="MenuInicio">
+                    <img src="~/images/logoBrawl.png" style="width:100px; margin-top:20px; float:left" />
+                </a>
+            </div>
+            <div class="menu">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    @if (Context.Session.GetObject<User>("USUARIO") != null)
+                    {
+                        <ul class="navbar-nav">
+                            <li class="nav-item active mx-3">
+                                <a class="nav-link" asp-controller="Inicio" asp-action="MenuInicio" style="color:white!important">Inicio</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" asp-controller="Equipos" asp-action="MisEquipos" style="color:white!important">Equipos</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" asp-controller="Liga" asp-action="MenuLigas" style="color:white!important">Ligas</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" asp-controller="LoginUsuario" asp-action="PerfilUsuario" style="color:white!important">Perfil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" style="color:white!important" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Opciones
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#242424">
+                                    <li style="background-color:#242424">
+                                        <a class="dropdown-item" asp-controller="LoginUsuario"
+                                       asp-action="CerrarSession" style="color:white">
+                                            Cerrar Session
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="background-color:#494848">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted" style="background-color:#242424">
+        <div class="d-lg-flex justify-content-center">
+            <div>
+                <span><img src="~/images/logoBrawl.png" style="width:40px" /></span>
+            </div>
+            <div class="copyright">
+                <p>Desarrollado por Juan Carlos <a href="#" target="_blank">Contacto</a></p>
+            </div>
+            <div>
+                <ul class="d-flex gap-3 list-unstyled">
+                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                    <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                    <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
